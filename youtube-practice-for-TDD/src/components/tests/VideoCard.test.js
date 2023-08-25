@@ -1,6 +1,6 @@
 import { fakeVideo as video } from "../../tests/videos";
 import { render, screen } from "@testing-library/react";
-import withRouter from "../../tests/utils";
+import { withRouter } from "../../tests/utils";
 import VideoCard from "../VideoCard";
 import { Route } from "react-router-dom";
 import { formatAgo } from "../../util/date";
