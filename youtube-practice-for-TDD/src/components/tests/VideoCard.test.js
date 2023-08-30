@@ -5,9 +5,17 @@ import VideoCard from "../VideoCard";
 import { Route, useLocation } from "react-router-dom";
 import { formatAgo } from "../../util/date";
 import userEvent from "@testing-library/user-event";
+import renderer from "react-test-renderer";
 
 describe("VideoCard", () => {
   const { title, channelTitle, publishedAt, thumbnails } = video.snippet;
+
+  it("renders grid type correctly", () => {
+    const component = renderer
+      .create(withRouter(<Route path="/" element={<VideoCard video={video} />} />))
+      .toJSON();
+    expect(component).toMatchSnapshot();
+  });
 
   it("render video items", async () => {
     render(withRouter(<Route path="/" element={<VideoCard video={video} />} />));
