@@ -17,6 +17,13 @@ describe("VideoCard", () => {
     expect(component).toMatchSnapshot();
   });
 
+  it("renders list type correctly", () => {
+    const component = renderer
+      .create(withRouter(<Route path="/" element={<VideoCard video={video} type="list" />} />))
+      .toJSON();
+    expect(component).toMatchSnapshot();
+  });
+
   it("render video items", async () => {
     render(withRouter(<Route path="/" element={<VideoCard video={video} />} />));
 
