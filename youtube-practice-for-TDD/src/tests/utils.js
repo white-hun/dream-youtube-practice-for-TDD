@@ -14,13 +14,13 @@ export function withAllContexts(children, youtube) {
   const testClient = createTestQueryClient();
 
   return (
-    <YoutubeApiContext.Provider value={youtube}>
+    <YoutubeApiContext.Provider value={{ youtube }}>
       <QueryClientProvider client={testClient}>{children}</QueryClientProvider>
     </YoutubeApiContext.Provider>
   );
 }
 
-function createTestQueryClient() {
+export function createTestQueryClient() {
   return new QueryClient({
     defaultOptions: {
       queries: {
