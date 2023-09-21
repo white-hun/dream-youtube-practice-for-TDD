@@ -11,7 +11,7 @@ describe("ChannelInfo", () => {
   afterEach(() => fakeYoutube.channelImageURL.mockReset());
 
   it("renders correctly", async () => {
-    fakeYoutube.channelImageURL.mockImplementation("url");
+    fakeYoutube.channelImageURL.mockImplementation(() => "url");
 
     const { asFragment } = render(
       withAllContexts(
@@ -21,7 +21,7 @@ describe("ChannelInfo", () => {
     );
 
     await waitFor(() => {
-      screen.getByText("img");
+      screen.getByRole("img");
     });
     expect(asFragment()).toMatchSnapshot();
   });
@@ -34,10 +34,12 @@ describe("ChannelInfo", () => {
     expect(screen.queryByRole("img")).toBeNull();
   });
 
-  it("renders with URL", () => {
+  it("renders with URL", async () => {
     renderChannelInfoWithCallback("url");
 
-    expect(screen.getByRole("img")).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByRole("img")).toBeInTheDocument();
+    });
   });
 
   function renderChannelInfoWithCallback(callback) {
