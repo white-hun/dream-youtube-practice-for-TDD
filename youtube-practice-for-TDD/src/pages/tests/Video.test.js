@@ -19,28 +19,34 @@ describe("Video component", () => {
 
   it("renders all videos when keyword is not specified", async () => {
     renderWithPath("/");
-    expect(fakeYoutube.search).toBeCalledWith(undefined);
+    expect(fakeYoutube.search).toHaveBeenCalledWith(undefined);
     await waitFor(() => expect(screen.getAllByRole("listitem")).toHaveLength(fakeVideos.length));
   });
+
   it("when keyword is specified, renders search results", async () => {
     const searchKeyword = "fake-keyword";
     renderWithPath(`/${searchKeyword}`);
-    expect(fakeYoutube.search).toBeCalledwith(searchKeyword);
+    expect(fakeYoutube.search).toHaveBeenCalledWith(searchKeyword);
     await waitFor(() => {
       expect(screen.getAllByRole("listitem")).toHaveLength(1);
     });
   });
-  it("renders loading state when items are being fetched", () => {
+
+  it("renders loading state when items are being fetched", async () => {
     renderWithPath("/");
-    expect(screen.getByText(/loaing.../i)).toBeInTheDocument();
+    expect(screen.getByText(/loading.../i)).toBeInTheDocument();
   });
-  it("renders error state when fetching items fails", () => {
-    fakeYoutube.search.mockImplementation(() => {
+
+  it("renders error state when fetching items fails", async () => {
+    fakeYoutube.search.mockImplementation(async () => {
       throw new Error("error");
     });
     renderWithPath("/");
-    expect(screen.getByText(/something is wrong/i)).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByText(/something is wrong/i)).toBeInTheDocument();
+    });
   });
+
   function renderWithPath(path) {
     return render(
       withAllContexts(
