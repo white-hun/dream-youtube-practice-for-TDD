@@ -4,12 +4,12 @@ import { useQuery } from "@tanstack/react-query";
 import VideoCard from "./VideoCard";
 
 export default function RelatedVideos({ id }) {
-  const { youtube } = useYoutubeApi();
+  const { youtube } = useYoutubeApi(); // youtube api를 사용하기 위해 불러온다
   const {
     isLoading,
     error,
     data: videos,
-  } = useQuery(["related", id], () => youtube.relatedVideos(id));
+  } = useQuery(["related", id], () => youtube.relatedVideos(id)); // youtube api에서 relatedVideos를 사용한다(id는 relatedToVideoId를 사용한다)
   return (
     <>
       {isLoading && <p>Loading...</p>}
