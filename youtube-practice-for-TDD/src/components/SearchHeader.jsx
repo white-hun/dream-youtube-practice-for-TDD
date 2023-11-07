@@ -3,15 +3,15 @@ import { BsYoutube, BsSearch } from "react-icons/bs";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
 export default function SearchHeader() {
-  const { keyword } = useParams();
-  const navigate = useNavigate();
-  const [text, setText] = useState("");
-  const handleChange = (e) => setText(e.target.value);
+  const { keyword } = useParams(); // 파라미터를 가져오기 위해 useParams()를 사용
+  const navigate = useNavigate(); // 페이지를 이동하기 위한 useNavigate()함수
+  const [text, setText] = useState(""); // text에 값을 저장하기 위한 useState()함수, 기본값은 빈 문자열("")이다
+  const handleChange = (e) => setText(e.target.value); // input tag의 onChange 속성을 사용해서 값이 바뀔 때 text에 바뀐 값 저장
   const handleSubmit = (e) => {
-    e.preventDefault();
-    navigate(`/videos/${text}`);
-  };
-  useEffect(() => setText(keyword || ""), [keyword]);
+    e.preventDefault(); // 페이지가 새로고침 되지 않기 위한 함수
+    navigate(`/videos/${text}`); // input tag에 입력되어 저장된 text 값을 파라미터로 포함하는 url로 페이지 이동 함수 실행
+  }; // 제출되면(작성 후 enter) 새로고침 하지 않고 페이지 이동
+  useEffect(() => setText(keyword || ""), [keyword]); // []의 값의 변경될 때만 실행되는 useEffect()함수로 keyword가 변경될 때 마다 text를 업데이트
   return (
     <header className="w-full flex p-4 text-2xl border-b border-zinc-600 mb-4">
       <Link to="/" className="flex items-center">
@@ -33,6 +33,5 @@ export default function SearchHeader() {
     </header>
   );
 }
-
-// keyword가 변경될 때마다 text를 업데이트 해준다 업데이트 될때만 실행할거기 때문에 useEffect 사용
-// setText는 keyword로 설정하는데 keyword가 없다면 빈 문자열("")을 준다
+// 파라미터=매개변수=입력변수
+// 현재 페이지의 Pathname을 가져오려면 useLocation()을 사용해야 한다
