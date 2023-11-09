@@ -9,7 +9,7 @@ export default function RelatedVideos({ id }) {
     isLoading,
     error,
     data: videos,
-  } = useQuery(["related", id], () => youtube.relatedVideos(id)); // youtube api에서 relatedVideos를 사용한다(id는 relatedToVideoId를 사용한다)
+  } = useQuery(["related", id], () => youtube.relatedVideos(id)); // youtube api의 relatedVideos에서 규칙에 맞는 데이터를 가져와 사용한다
   return (
     <>
       {isLoading && <p>Loading...</p>}

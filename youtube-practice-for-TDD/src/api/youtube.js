@@ -23,7 +23,7 @@ export default class Youtube {
           relatedToVideoId: id,
         },
       })
-      .then((res) => res?.data?.items?.map((item) => ({ ...item, id: item?.id?.videoId })));
+      .then((res) => res?.data?.items?.map((item) => ({ ...item, id: item?.id?.videoId }))); // item을 사용하는데 item에 포함되어 있는 id는 videoId로 변경하여 사용한다.
   }
   async #searchByKeyword(keyword) {
     return this.apiClient
