@@ -8,7 +8,7 @@ import NotFound from "./pages/NotFound";
 import Videos from "./pages/Videos";
 import VideoDetail from "./pages/VideoDetail";
 
-// router를 정의했으니 사용해야하는데
+// createBrowserRouter로 경로 지정
 const router = createBrowserRouter([
   {
     path: "/",
@@ -23,10 +23,10 @@ const router = createBrowserRouter([
   },
 ]);
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
+const root = ReactDOM.createRoot(document.getElementById("root")); // virtual DOM의 시작점 id="root"에 render(index.html)
 root.render(
   // <React.StrictMode>
-  <RouterProvider router={router} />
+  <RouterProvider router={router} /> // RouterProvider를 이용해서 구성요소들을 전달하고 활성화한다.
   // </React.StrictMode>
 );
 
