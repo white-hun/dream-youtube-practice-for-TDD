@@ -1,7 +1,5 @@
 // import axios from "axios";
 
-import axios from "axios";
-
 // export default class YoutubeClient {
 //   constructor() {
 //     this.httpClient = axios.create({
@@ -22,7 +20,7 @@ import axios from "axios";
 // 전달받은 params를 사용하여 constructor에서 설정한 실제 api에 get요청
 
 // -----------------------------------------------------------------------------------------
-
+import axios from "axios";
 export default class YoutubeClient {
   constructor() {
     this.httpClient = axios.create({

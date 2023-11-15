@@ -6,8 +6,8 @@ import RelatedVideos from "../components/RelatedVideos";
 export default function VideoDetail() {
   const {
     state: { video },
-  } = useLocation();
-  const { title, channelId, channelTitle, description } = video.snippet;
+  } = useLocation(); // useNavigate로 전달한 데이터를 받는 useLocation() 함수
+  const { title, channelId, channelTitle, description } = video.snippet; // 받아온 데이터 video를 구조 분해 할당
   return (
     <section className="flex flex-col lg:flex-row">
       <article className="basis-4/6">
